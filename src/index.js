@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AppStore from './stores/app-store';
 import Provider from './util/provider';
-import Home from './components/home';
+import Home from './containers/home';
 
 const appStore = new AppStore();
 
