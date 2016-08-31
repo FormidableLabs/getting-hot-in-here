@@ -3,6 +3,7 @@
 "env":
   "browser": true
 "rules":
+  "no-invalid-this": 0
   "no-magic-numbers": 0
   "no-use-before-define": 0
   "react/sort-comp": 0

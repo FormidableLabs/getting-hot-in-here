@@ -9,12 +9,17 @@ export default class InputBox extends Component {
     style: PropTypes.object,
   }
 
+  focus = () => {
+    this.input.focus();
+  };
+
   render() {
     const { style: propStyles, ...props } = this.props;
     const inputStyles = StyleSheet.flatten(styles.input);
 
     return (
       <TextInput
+        ref={(c) => { this.input = c; }}
         style={{ ...inputStyles, ...propStyles }}
         {...props}
       />

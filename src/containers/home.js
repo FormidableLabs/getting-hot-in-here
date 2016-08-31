@@ -3,48 +3,26 @@ import {
   StyleSheet,
   View,
   Text,
-  Image,
+  TouchableOpacity,
 } from 'react-native';
-import { observer } from 'mobx-react/native';
-import InputBox from '../components/input';
 
-@observer
 export default class Home extends Component {
-  static contextTypes = {
-    stores: PropTypes.object,
+  static propTypes = {
+    navigator: PropTypes.object,
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      password: '',
-    };
+  handleBackPress = () => {
+    this.props.navigator.pop();
   }
-
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>VizHub</Text>
-        <Image
-          style={styles.image}
-          source={require('../../static/githublogo.png')}
-        />
-        <InputBox
-          placeholder={'username'}
-          style={StyleSheet.flatten(styles.input)}
-          value={this.state.username.toLowerCase()}
-          onChangeText={(text) => this.setState({ username: text })}
-          autoCorrect={false}
-        />
-        <InputBox
-          placeholder={'password'}
-          style={StyleSheet.flatten(styles.input)}
-          value={this.state.password}
-          onChangeText={(text) => this.setState({ password: text })}
-          secureTextEntry
-        />
+        <TouchableOpacity
+          onPress={this.handleBackPress}
+          style={styles.back}
+        >
+          <Text>Back</Text>
+        </TouchableOpacity>
+        <Text style={styles.title}>View 2</Text>
       </View>
     );
   }
@@ -57,18 +35,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  input: {
-    marginTop: 5,
-    marginBottom: 5,
+  back: {
+    position: 'absolute',
+    padding: 20,
+    top: 20,
+    left: 20,
   },
   title: {
     fontSize: 42,
     fontWeight: 'bold',
     paddingBottom: 20,
-  },
-  image: {
-    height: 20,
-    width: 20,
-    paddingBottom: 5,
   },
 });
