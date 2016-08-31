@@ -7,6 +7,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "github": "^2.6.0",
     "mobx": "^2.4.4",
     "mobx-react": "^3.5.5",
     "react": "15.3.1",
