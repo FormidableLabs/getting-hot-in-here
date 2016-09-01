@@ -49,8 +49,9 @@ export default class Login extends Component {
         />
         <InputBox
           placeholder={'username'}
+          autoCapitalize="none"
           style={StyleSheet.flatten(styles.input)}
-          value={this.state.username.toLowerCase()}
+          value={this.state.username}
           onChangeText={(text) => this.setState({ username: text })}
           onSubmitEditing={this.handleUserSubmit}
           autoCorrect={false}

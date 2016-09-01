@@ -14,17 +14,17 @@ export default class Navigator extends Component {
   static propTypes = {
     initialRoute: PropTypes.object,
   };
-  navigationChange = (type, route) => {
+  push = (route) => {
     let { navigationState } = this.state;
-    switch (type) {
-    case 'push':
-      navigationState = NavigationStateUtils.push(navigationState, route);
-      break;
+    navigationState = NavigationStateUtils.push(navigationState, route);
 
-    case 'pop':
-      navigationState = NavigationStateUtils.pop(navigationState);
-      break;
+    if (this.state.navigationState !== navigationState) {
+      this.setState({ navigationState });
     }
+  };
+  pop = (route) => {
+    let { navigationState } = this.state;
+    navigationState = NavigationStateUtils.pop(navigationState, route);
 
     if (this.state.navigationState !== navigationState) {
       this.setState({ navigationState });
@@ -37,11 +37,11 @@ export default class Navigator extends Component {
   constructor(props) {
     super(props);
 
-    this.handlePop = this.navigationChange.bind(null, 'pop');
+    this.handlePop = this.push;
 
     this.navigator = {
-      push: this.navigationChange.bind(null, 'push'),
-      pop: this.navigationChange.bind(null, 'pop'),
+      push: this.push,
+      pop: this.pop,
     };
 
     this.state = {
