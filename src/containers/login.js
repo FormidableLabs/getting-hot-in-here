@@ -9,9 +9,7 @@ import { observer } from 'mobx-react/native';
 
 import InputBox from '../components/input';
 import Home from './home';
-import GitHubApi from 'github';
-
-const github = new GitHubApi();
+import GitHub from 'github-api';
 
 @observer
 export default class Login extends Component {
@@ -28,20 +26,19 @@ export default class Login extends Component {
   };
 
   handlePasswordSubmit = () => {
-    github.authenticate({
-      type: 'basic',
+    const gh = new GitHub({
       username: this.state.username,
       password: this.state.password,
-    }, (err, res) => {
-      if (res.token) {
-        console.log('token');
-
-        this.props.navigator.push({
-          key: 'Home',
-          component: Home,
-        });
-      }
     });
+
+    const user = gh.getUser();
+
+    if (user) {
+      this.props.navigator.push({
+        key: 'Home',
+        component: Home,
+      });
+    }
   };
 
   constructor(props) {

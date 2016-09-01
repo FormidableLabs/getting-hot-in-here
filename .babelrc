@@ -1,4 +1,14 @@
 {
   "presets": ["react-native"],
-  "plugins": ["transform-decorators-legacy"]
+  "plugins": [
+    "transform-decorators-legacy",
+    [
+      "transform-es2015-modules-umd",
+      {
+        "globals": {
+          "es6-promise": "Promise"
+        }
+      }
+    ]
+  ]
 }
